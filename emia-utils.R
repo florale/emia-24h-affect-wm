@@ -1,5 +1,5 @@
-dir <- "/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/data"
-outputdir <- "/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/output"
+dir <- "/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/data/"
+outputdir <- "/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/output/"
 
 library(data.table)
 library(JWileymisc)
@@ -40,3 +40,10 @@ library(purrr)
 library(abind)
 library(dutchmasters)
 library(haven)
+
+expand.grid.df <- function(...) Reduce(function(...) merge.data.frame(..., by = NULL, all = TRUE), list(...))
+
+scales::show_col(tvthemes:::hilda_palette$Day)
+extrafont::loadfonts()
+
+
