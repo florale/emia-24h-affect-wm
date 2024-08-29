@@ -43,7 +43,7 @@ m_wm_lead <- brmcoda(clr,
                        (1 + wilr1 + wilr2 + wilr3 + wilr4 | ID),
                      # iter = 6000, chains = 8, cores = 8, seed = 123, warmup = 1000,
                      backend = "cmdstanr")
-saveRDS(m_valence_lead, paste0(outputdir, "m_valence_lead", ".RDS"))
+saveRDS(m_wm_lead, paste0(outputdir, "m_wm_lead", ".RDS"))
 
 # substitution -------------------
 m_valence_lead_sub <- substitution(

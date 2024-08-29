@@ -327,7 +327,7 @@ grDevices::cairo_pdf(
 ggarrange(emia_h24_affect_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Arousal"]], 
           nrow = 1, legend = "none",
           labels = c(
-            "A. Within-person Reallocations of MVPA and Arousal"
+            "A. Within-person Reallocations of MVPA and Energetic Arousal"
           ),
           hjust = 0,
           font.label = list(size = 13, color = "black", family = "Arial Narrow")
@@ -342,7 +342,7 @@ grDevices::cairo_pdf(
   height = 8,
 )
 ggarrange(emia_h24_affect_plot_b[["Between-person Reallocations of Standing and Calmness"]], 
-          emia_h24_affect_plot_w[["Within-person Reallocations of Light Physical Activity and Valence"]], 
+          emia_h24_affect_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
           nrow = 2, legend = "none",
           labels = c(
             "A. Between-person Reallocations of Standing and Calmness",
@@ -360,13 +360,13 @@ grDevices::cairo_pdf(
   height = 12,
 )
 ggarrange(emia_h24_affect_plot_b[["Between-person Reallocations of Standing and Calmness"]], 
-          emia_h24_affect_plot_w[["Within-person Reallocations of Light Physical Activity and Valence"]], 
+          emia_h24_affect_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
           emia_h24_affect_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Arousal"]], 
           nrow = 3, legend = "none",
           labels = c(
             "A. Between-person Reallocations of Standing and Calmness",
             "B. Within-person Reallocations of LPA and Calmness",
-            "C. Within-person Reallocations of MVPA and Arousal"
+            "C. Within-person Reallocations of MVPA and Energetic Arousal"
           ),
           hjust = 0,
           font.label = list(size = 13, color = "black", family = "Arial Narrow")

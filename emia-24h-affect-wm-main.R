@@ -43,7 +43,7 @@ m_wm <- brmcoda(clr,
                   (1 + wilr1 + wilr2 + wilr3 + wilr4 + WWM_score_lag | ID),
                 # iter = 6000, chains = 8, cores = 8, seed = 123, warmup = 1000,
                 backend = "cmdstanr")
-saveRDS(m_valence, paste0(outputdir, "m_valence", ".RDS"))
+saveRDS(m_wm, paste0(outputdir, "m_wm", ".RDS"))
 
 # substitution -------------------
 m_valence_sub <- substitution(
