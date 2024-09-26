@@ -84,6 +84,31 @@ clr <- complr(d,
               idvar = "ID",
               total = 1440)
 
+sbp_mvpa <- matrix(c(
+  -1, -1, -1, -1, 1,
+  -1, -1, -1, 1, 0,
+  -1, -1, 1, 0, 0,
+  -1, 1, 0, 0, 0), ncol = 5, byrow = TRUE)
+
+clr_mvpa <- complr(d,
+                   sbp = sbp_mvpa,
+                   parts = parts,
+                   idvar = "ID",
+                   total = 1440)
+
+
+sbp_sb <- matrix(c(
+  -1, 1, -1, -1, -1,
+  1, 0, -1, -1, -1,
+  0, 0, 1, -1, -1,
+  0, 0, 0, 1, -1), ncol = 5, byrow = TRUE)
+
+clr_sb <- complr(d,
+                   sbp = sbp_sb,
+                   parts = parts,
+                   idvar = "ID",
+                   total = 1440)
+
 # lag composition -----
 partsl <- c("SleepInterval_lag", "Sedentary", "Standing", "LPA", "MVPA")
 ds <- d[complete.cases(d[, .(SleepInterval_lag, Sedentary, Standing, LPA, MVPA)])]

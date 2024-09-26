@@ -1,5 +1,5 @@
-dir <- "/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/data/"
-outputdir <- "/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/output/"
+dir <- "/Users/florale/Library/CloudStorage/OneDrive-Personal/monash/projects/emia/data/"
+outputdir <- "/Users/florale/Library/CloudStorage/OneDrive-Personal/monash/projects/emia/output/"
 
 library(data.table)
 library(JWileymisc)
