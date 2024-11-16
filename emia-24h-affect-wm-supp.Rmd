@@ -1,0 +1,214 @@
+---
+title: "Associations between daily composition of 24-hour physical behavior with affective states and working memory"
+author: "Flora Le (flora.le@monash.edu)"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: spacelab
+    highlight: zenburn
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    smooth_scroll: no
+    toc_depth: 4
+    fig_width: 10
+    fig_height: 4
+    fig_caption: yes
+    number_sections: true
+---
+
+This file presents the full 
+results for the manuscript:
+**Associations between daily composition of 24-hour physical behavior with affective states and working memory**.
+
+*Notes.* 
+Statistical significance of individual parameters was set as Bayesian 95% posterior credible intervals (CIs) not including zero. Sleep = Sleep Period. MVPA = Moderate-to-Vigorous Physical Activity. LPA = Light Physical Activity.
+
+```{r, echo=FALSE, message=FALSE}
+source("emia-24h-affect-wm-supp.R")
+```
+
+# Concurrent Results 
+## 60-minute Reallocations
+ * Reallocation of 60 minutes between movement behaviours and *valence*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_60_list[[1]])
+```
+
+ * Reallocation of 60 minutes between movement behaviours and *energetic arousal*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_60_list[[2]])
+```
+
+ * Reallocation of 60 minutes between movement behaviours and *calmness*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_60_list[[3]])
+```
+
+ * Reallocation of 60 minutes between movement behaviours and *working memory performance*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_60_list[[4]])
+```
+
+## 30-minute Reallocations
+
+ * Reallocation of 30 minutes between movement behaviours and *valence*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_30_list[[1]])
+```
+
+ * Reallocation of 30 minutes between movement behaviours and *energetic arousal*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_30_list[[2]])
+```
+
+ * Reallocation of 30 minutes between movement behaviours and *calmness*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_30_list[[3]])
+```
+
+ * Reallocation of 30 minutes between movement behaviours and *working memory performance*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_30_list[[4]])
+```
+
+## 5-minute Reallocations
+
+ * Reallocation of 5 minutes between movement behaviours and *valence*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_5_list[[1]])
+```
+
+ * Reallocation of 5 minutes between movement behaviours and *energetic arousal*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_5_list[[2]])
+```
+
+ * Reallocation of 5 minutes between movement behaviours and *calmness*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_5_list[[3]])
+```
+
+ * Reallocation of 5 minutes between movement behaviours and *working memory performance*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_sub_5_list[[4]])
+```
+
+
+## Visualisation of Reallocations from 1 to 60 minutes of 24h behaviours
+### Between person level
+
+```{r, warning=FALSE, echo = FALSE, results='asis', fig.align='center'}
+walk(emia_24h_plot_b_supp, print)
+```
+
+### Within person level
+
+```{r, warning=FALSE, echo = FALSE, results='asis', fig.align='center'}
+walk(emia_24h_plot_w_supp, print)
+```
+
+
+# Prospective Results 
+## 60-minute Reallocations
+ * Reallocation of 60 minutes between movement behaviours and *valence*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_60_list[[1]])
+```
+
+ * Reallocation of 60 minutes between movement behaviours and *energetic arousal*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_60_list[[2]])
+```
+
+ * Reallocation of 60 minutes between movement behaviours and *calmness*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_60_list[[3]])
+```
+
+ * Reallocation of 60 minutes between movement behaviours and *working memory performance*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_60_list[[4]])
+```
+
+## 30-minute Reallocations
+
+ * Reallocation of 30 minutes between movement behaviours and *valence*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_30_list[[1]])
+```
+
+ * Reallocation of 30 minutes between movement behaviours and *energetic arousal*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_30_list[[2]])
+```
+
+ * Reallocation of 30 minutes between movement behaviours and *calmness*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_30_list[[3]])
+```
+
+ * Reallocation of 30 minutes between movement behaviours and *working memory performance*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_30_list[[4]])
+```
+
+## 5-minute Reallocations
+
+ * Reallocation of 5 minutes between movement behaviours and *valence*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_5_list[[1]])
+```
+
+ * Reallocation of 5 minutes between movement behaviours and *energetic arousal*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_5_list[[2]])
+```
+
+ * Reallocation of 5 minutes between movement behaviours and *calmness*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_5_list[[3]])
+```
+
+ * Reallocation of 5 minutes between movement behaviours and *working memory performance*
+ 
+```{r, warning=FALSE, echo=FALSE}
+knitr::kable(emia_24h_lead_sub_5_list[[4]])
+```
+
+
+## Visualisation of Reallocations from 1 to 60 minutes of movement behaviours
+### Between person level
+
+```{r, warning=FALSE, echo = FALSE, results='asis', fig.align='center'}
+walk(emia_24h_lead_plot_b_supp, print)
+```
+
+### Within person level
+
+```{r, warning=FALSE, echo = FALSE, results='asis', fig.align='center'}
+walk(emia_24h_lead_plot_w_supp, print)
+```
