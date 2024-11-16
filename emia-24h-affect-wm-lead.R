@@ -132,3 +132,24 @@ m_wm_sb_lead <- brmcoda(clr_sb,
                         # iter = 6000, chains = 8, cores = 8, seed = 123, warmup = 1000,
                         backend = "cmdstanr")
 saveRDS(m_wm_sb_lead, paste0(outputdir, "m_wm_sb_lead", ".RDS"))
+
+# model summary -----------------
+m_valence_mvpa_lead <- readRDS(paste0(outputdir, "m_valence_mvpa_lead", ".RDS"))
+m_energeticarousal_mvpa_lead <- readRDS(paste0(outputdir, "m_energeticarousal_mvpa_lead", ".RDS"))
+m_calmness_mvpa_lead <- readRDS(paste0(outputdir, "m_calmness_mvpa_lead", ".RDS"))
+m_wm_mvpa_lead <- readRDS(paste0(outputdir, "m_wm_mvpa_lead", ".RDS"))
+
+summary(m_valence_mvpa_lead)
+summary(m_energeticarousal_mvpa_lead)
+summary(m_calmness_mvpa_lead)
+summary(m_wm_mvpa_lead)
+
+m_valence_sb_lead <- readRDS(paste0(outputdir, "m_valence_sb_lead", ".RDS"))
+m_energeticarousal_sb_lead <- readRDS(paste0(outputdir, "m_energeticarousal_sb_lead", ".RDS"))
+m_calmness_sb_lead <- readRDS(paste0(outputdir, "m_calmness_sb_lead", ".RDS"))
+m_wm_sb_lead <- readRDS(paste0(outputdir, "m_wm_sb_lead", ".RDS"))
+
+summary(m_valence_sb_lead)
+summary(m_energeticarousal_sb_lead)
+summary(m_calmness_sb_lead)
+summary(m_wm_sb_lead)

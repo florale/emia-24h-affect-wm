@@ -43,7 +43,7 @@ library(haven)
 
 expand.grid.df <- function(...) Reduce(function(...) merge.data.frame(..., by = NULL, all = TRUE), list(...))
 
-scales::show_col(tvthemes:::hilda_palette$Day)
+# scales::show_col(tvthemes:::hilda_palette$Day)
 extrafont::loadfonts()
 
 

@@ -83,20 +83,26 @@ m_wm_sub <- substitution(
 saveRDS(m_wm_sub, paste0(outputdir, "m_wm_sub", ".RDS"))
 
 # summary ------------------------
+m_valence_sub <- readRDS(paste0(outputdir, "m_valence_sub", ".RDS"))
+m_energeticarousal_sub <- readRDS(paste0(outputdir, "m_energeticarousal_sub", ".RDS"))
+m_calmness_sub <- readRDS(paste0(outputdir, "m_calmness_sub", ".RDS"))
+m_wm_sub <- readRDS(paste0(outputdir, "m_wm_sub", ".RDS"))
+
 summary(m_valence_sub, delta = 30)
 summary(m_energeticarousal_sub, delta = 30)
 summary(m_calmness_sub, delta = 30)
 summary(m_wm_sub, delta = 30)
+
+summary(m_valence_sub, delta = 5)
+summary(m_energeticarousal_sub, delta = 5)
+summary(m_calmness_sub, delta = 5)
+summary(m_wm_sub, delta = 5)
 
 summary(m_valence_sub, delta = 60)
 summary(m_energeticarousal_sub, delta = 60)
 summary(m_calmness_sub, delta = 60)
 summary(m_wm_sub, delta = 60)
 
-summary(m_valence_sub, delta = 5)
-summary(m_energeticarousal_sub, delta = 5)
-summary(m_calmness_sub, delta = 5)
-summary(m_wm_sub, delta = 5)
 
 ## brmcoda clr sb ---------------------------
 m_valence_sb <- brmcoda(clr_sb,
@@ -144,7 +150,7 @@ m_wm_sb <- brmcoda(clr_sb,
 saveRDS(m_wm_sb, paste0(outputdir, "m_wm_sb", ".RDS"))
 
 
-# model summary
+# model summary -----------------
 m_valence_mvpa <- readRDS(paste0(outputdir, "m_valence_mvpa", ".RDS"))
 m_energeticarousal_mvpa <- readRDS(paste0(outputdir, "m_energeticarousal_mvpa", ".RDS"))
 m_calmness_mvpa <- readRDS(paste0(outputdir, "m_calmness_mvpa", ".RDS"))
