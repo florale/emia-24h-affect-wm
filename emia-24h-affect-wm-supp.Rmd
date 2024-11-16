@@ -108,6 +108,9 @@ knitr::kable(emia_24h_sub_5_list[[4]])
 
 
 ## Visualisation of Reallocations from 1 to 60 minutes of 24h behaviours
+
+*Notes.* Significance at `r paste(intToUtf8(8224))`  5 minutes, `r paste(intToUtf8(8225))`  30 minutes, and `r paste(intToUtf8(0x00A7))` 60 minutes.
+
 ### Between person level
 
 ```{r, warning=FALSE, echo = FALSE, results='asis', fig.align='center'}
@@ -201,6 +204,9 @@ knitr::kable(emia_24h_lead_sub_5_list[[4]])
 
 
 ## Visualisation of Reallocations from 1 to 60 minutes of movement behaviours
+
+*Notes.* Significance at `r paste(intToUtf8(8224))`  5 minutes, `r paste(intToUtf8(8225))`  30 minutes, and `r paste(intToUtf8(0x00A7))` 60 minutes.
+
 ### Between person level
 
 ```{r, warning=FALSE, echo = FALSE, results='asis', fig.align='center'}

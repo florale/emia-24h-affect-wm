@@ -15,7 +15,7 @@ emia_24h_sub_30_list <- lapply(list(
   X[, To := ifelse(To == "SleepInterval", "Sleep", To)]
   
   X$Sig <- between(0, X$CI_low, X$CI_high)
-  X[, Sig := ifelse(Sig == FALSE & Delta %in% c(-30, 30), "*", "")]
+  X[, Sig := ifelse(Sig == FALSE & Delta %in% c(-30, 30), "Yes", "")]
 })
 
 emia_24h_sub_5_list <- lapply(list(
@@ -27,7 +27,7 @@ emia_24h_sub_5_list <- lapply(list(
   X[, To := ifelse(To == "SleepInterval", "Sleep", To)]
   
   X$Sig <- between(0, X$CI_low, X$CI_high)
-  X[, Sig := ifelse(Sig == FALSE & Delta %in% c(-5, 5), "*", "")]
+  X[, Sig := ifelse(Sig == FALSE & Delta %in% c(-5, 5), "Yes", "")]
 })
 
 emia_24h_sub_60_list <- lapply(list(
@@ -39,7 +39,7 @@ emia_24h_sub_60_list <- lapply(list(
   X[, To := ifelse(To == "SleepInterval", "Sleep", To)]
   
   X$Sig <- between(0, X$CI_low, X$CI_high)
-  X[, Sig := ifelse(Sig == FALSE & Delta %in% c(-60, 60), "*", "")]
+  X[, Sig := ifelse(Sig == FALSE & Delta %in% c(-60, 60), "Yes", "")]
   
 })
 
