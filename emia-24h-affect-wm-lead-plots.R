@@ -94,9 +94,9 @@ for(i in seq_along(lead_sub_models)) {
   
   model_tmp$sig <- between(0, model_tmp$CI_low, model_tmp$CI_high)
   
-  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), paste(intToUtf8(8224)), "")]
-  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), paste(intToUtf8(8225)), "")]
-  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), paste(intToUtf8(0x00A7)), "")]
+  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), "a", "")]
+  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), "b", "")]
+  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), "c", "")]
   
   lead_sub_models_b[[i]] <- model_tmp
 }
@@ -203,9 +203,9 @@ for(i in seq_along(lead_sub_models)) {
   
   model_tmp$sig <- between(0, model_tmp$CI_low, model_tmp$CI_high)
   
-  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), paste(intToUtf8(8224)), "")]
-  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), paste(intToUtf8(8225)), "")]
-  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), paste(intToUtf8(0x00A7)), "")]
+  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), "a", "")]
+  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), "b", "")]
+  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), "c", "")]
   
   lead_sub_models_w[[i]] <- model_tmp
 }

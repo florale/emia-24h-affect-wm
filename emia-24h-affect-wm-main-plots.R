@@ -94,9 +94,9 @@ for(i in seq_along(sub_models)) {
   
   model_tmp$sig <- between(0, model_tmp$CI_low, model_tmp$CI_high)
   
-  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), paste(intToUtf8(8224)), "")]
-  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), paste(intToUtf8(8225)), "")]
-  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), paste(intToUtf8(0x00A7)), "")]
+  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), "a", "")]
+  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), "b", "")]
+  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), "c", "")]
   
   sub_models_b[[i]] <- model_tmp
 }
@@ -203,9 +203,9 @@ for(i in seq_along(sub_models)) {
   
   model_tmp$sig <- between(0, model_tmp$CI_low, model_tmp$CI_high)
   
-  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), paste(intToUtf8(8224)), "")]
-  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), paste(intToUtf8(8225)), "")]
-  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), paste(intToUtf8(0x00A7)), "")]
+  model_tmp[, Sig_5 := ifelse(sig == FALSE & Delta %in% c(-5, 5), "a", "")]
+  model_tmp[, Sig_30 := ifelse(sig == FALSE & Delta %in% c(-30, 30), "b", "")]
+  model_tmp[, Sig_60 := ifelse(sig == FALSE & Delta %in% c(-60, 60), "c", "")]
   
   sub_models_w[[i]] <- model_tmp
 }
@@ -298,11 +298,51 @@ ggarrange(emia_24h_plot_b[["Between-person Reallocations of Standing and Valence
 )
 dev.off()
 
+grDevices::png(
+  file = paste0(outputdir, "emia_24h_between", ".png"),
+  width = 8000,
+  height = 10000,
+  res = 900
+)
+ggarrange(emia_24h_plot_b[["Between-person Reallocations of Standing and Valence"]], 
+          emia_24h_plot_b[["Between-person Reallocations of Light Physical Activity and Valence"]], 
+          emia_24h_plot_b[["Between-person Reallocations of Standing and Calmness"]], 
+          nrow = 3, legend = "none",
+          labels = c(
+            "A. Between-person Reallocations of Standing and Valence",
+            "B. Between-person Reallocations of LPA and Valence",
+            "C. Between-person Reallocations of Standing and Calmness"
+          ),
+          hjust = 0,
+          font.label = list(size = 13, color = "black", family = "Arial Narrow")
+)
+dev.off()
+
 # within
 grDevices::cairo_pdf(
   file = paste0(outputdir, "emia_24h_within", ".pdf"),
   width = 10,
   height = 12,
+)
+ggarrange(emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Valence"]], 
+          emia_24h_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
+          emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Energetic Arousal"]], 
+          nrow = 3, legend = "none",
+          labels = c(
+            "A. Within-person Reallocations of MVPA and Valence",
+            "B. Within-person Reallocations of LPA and Calmness",
+            "C. Within-person Reallocations of MVPA and Energetic Arousal"
+          ),
+          hjust = 0,
+          font.label = list(size = 13, color = "black", family = "Arial Narrow")
+)
+dev.off()
+
+grDevices::png(
+  file = paste0(outputdir, "emia_24h_within", ".png"),
+  width = 8000,
+  height = 10000,
+  res = 900
 )
 ggarrange(emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Valence"]], 
           emia_24h_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
