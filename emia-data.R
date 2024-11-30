@@ -1,5 +1,5 @@
 source("emia-utils.R")
-emia <- read_sav("/Users/florale/Library/CloudStorage/OneDrive-MonashUniversity/PhD/projects/emia/data/EMiA_actipass_ema_data_4Flora_reduced.sav")
+emia <- read_sav(paste0(dir, "EMiA_actipass_ema_data_4Flora_reduced.sav"))
 d <- as.data.table(emia)
 
 # survey id
@@ -68,7 +68,6 @@ d <- cbind(d[, -parts, with = FALSE], composition_imp)
 hist(d$valence_lead)
 hist(d$energeticarousal_lead)
 hist(d$calmness_lead)
-
 hist(d$WM_score_lead)
 
 # composition and ilr

@@ -1,4 +1,5 @@
 source("emia-utils.R")
+
 m_valence_sub <- readRDS(paste0(outputdir, "m_valence_sub", ".RDS"))
 m_energeticarousal_sub <- readRDS(paste0(outputdir, "m_energeticarousal_sub", ".RDS"))
 m_calmness_sub <- readRDS(paste0(outputdir, "m_calmness_sub", ".RDS"))
@@ -130,7 +131,7 @@ emia_24h_plot_b <- foreach(i = 1:20,
                                  labs(x = paste0("Difference in ", rg[i, "parts"], " at Between-person Level"),
                                       y = paste0("Estimated Difference")) +
                                  facet_wrap(ggplot2::vars(From, To),
-                                            labeller = label_bquote(cols = .(as.character(From)) %<-% minutes %->% .(as.character(To))),
+                                            labeller = label_bquote(cols = .(as.character(From)) %<-% min %->% .(as.character(To))),
                                             strip.position = "bottom", ncol = 4) +
                                  scale_x_continuous(limits = c(-63, 63),
                                                     breaks = c(-60, 0, 60),
@@ -164,7 +165,6 @@ emia_24h_plot_b <- foreach(i = 1:20,
 names(emia_24h_plot_b) <- foreach(i = 1:20) %dopar% {
   paste0(rg[i, "level_labels"], "Reallocations of ", rg[i, "part_labels"], " and ", rg[i, "resp"])
 }
-
 saveRDS(emia_24h_plot_b, paste0(outputdir, "emia_24h_plot_b", ".RDS"))
 
 # within -------------------
@@ -239,7 +239,7 @@ emia_24h_plot_w <- foreach(i = 21:40,
                                  labs(x = paste0("Difference in ", rg[i, "parts"], " at Within-person Level"),
                                       y = paste0("Estimated Change")) +
                                  facet_wrap(ggplot2::vars(From, To),
-                                            labeller = label_bquote(cols = .(as.character(From)) %<-% minutes %->% .(as.character(To))),
+                                            labeller = label_bquote(cols = .(as.character(From)) %<-% min %->% .(as.character(To))),
                                             strip.position = "bottom", ncol = 4) +
                                  scale_x_continuous(limits = c(-63, 63),
                                                     breaks = c(-60, 0, 60),
@@ -274,7 +274,6 @@ emia_24h_plot_w <- foreach(i = 21:40,
 names(emia_24h_plot_w) <- foreach(i = 21:40) %dopar% {
   paste0(rg[i, "level_labels"], "Reallocations of ", rg[i, "part_labels"], " and ", rg[i, "resp"])
 }
-
 saveRDS(emia_24h_plot_w, paste0(outputdir, "emia_24h_plot_w", ".RDS"))
 
 ## save -----------
@@ -325,13 +324,14 @@ grDevices::cairo_pdf(
   height = 12,
 )
 ggarrange(emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Valence"]], 
-          emia_24h_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
           emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Energetic Arousal"]], 
+          emia_24h_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
           nrow = 3, legend = "none",
           labels = c(
             "A. Within-person Reallocations of MVPA and Valence",
-            "B. Within-person Reallocations of LPA and Calmness",
-            "C. Within-person Reallocations of MVPA and Energetic Arousal"
+            "B. Within-person Reallocations of MVPA and Energetic Arousal",
+            "C. Within-person Reallocations of LPA and Calmness"
+            
           ),
           hjust = 0,
           font.label = list(size = 13, color = "black", family = "Arial Narrow")
@@ -345,13 +345,13 @@ grDevices::png(
   res = 900
 )
 ggarrange(emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Valence"]], 
+          emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Energetic Arousal"]],
           emia_24h_plot_w[["Within-person Reallocations of Light Physical Activity and Calmness"]], 
-          emia_24h_plot_w[["Within-person Reallocations of Moderate-to-Vigorous Physical Activity and Energetic Arousal"]], 
           nrow = 3, legend = "none",
           labels = c(
             "A. Within-person Reallocations of MVPA and Valence",
-            "B. Within-person Reallocations of LPA and Calmness",
-            "C. Within-person Reallocations of MVPA and Energetic Arousal"
+            "B. Within-person Reallocations of MVPA and Energetic Arousal",
+            "C. Within-person Reallocations of LPA and Calmness"
           ),
           hjust = 0,
           font.label = list(size = 13, color = "black", family = "Arial Narrow")
@@ -388,7 +388,7 @@ emia_24h_plot_b_supp <- foreach(i = 1:20,
                                            y = paste0("Estimated Difference"),
                                            title =  paste0("Reallocation of ", rg[i, "parts"], " and ", rg[i, "resp"], " at Between-person Level")) +
                                       facet_wrap(ggplot2::vars(From, To),
-                                                 labeller = label_bquote(cols = .(as.character(From)) %<-% minutes %->% .(as.character(To))),
+                                                 labeller = label_bquote(cols = .(as.character(From)) %<-% min %->% .(as.character(To))),
                                                  strip.position = "bottom", ncol = 4) +
                                       scale_x_continuous(limits = c(-63, 63),
                                                          breaks = c(-60, 0, 60),
@@ -422,7 +422,6 @@ emia_24h_plot_b_supp <- foreach(i = 1:20,
 names(emia_24h_plot_b_supp) <- foreach(i = 1:20) %dopar% {
   paste0(rg[i, "level_labels"], "Reallocations of ", rg[i, "part_labels"], " and ", rg[i, "resp"])
 }
-
 saveRDS(emia_24h_plot_b_supp, paste0(outputdir, "emia_24h_plot_b_supp", ".RDS"))
 
 emia_24h_plot_w_supp <- foreach(i = 21:40,
@@ -454,7 +453,7 @@ emia_24h_plot_w_supp <- foreach(i = 21:40,
                                            y = paste0("Estimated Change"),
                                            title =  paste0("Reallocation of ", rg[i, "parts"], " and ", rg[i, "resp"], " at Within-person Level")) +
                                       facet_wrap(ggplot2::vars(From, To),
-                                                 labeller = label_bquote(cols = .(as.character(From)) %<-% minutes %->% .(as.character(To))),
+                                                 labeller = label_bquote(cols = .(as.character(From)) %<-% min %->% .(as.character(To))),
                                                  strip.position = "bottom", ncol = 4) +
                                       scale_x_continuous(limits = c(-63, 63),
                                                          breaks = c(-60, 0, 60),
@@ -489,5 +488,4 @@ emia_24h_plot_w_supp <- foreach(i = 21:40,
 names(emia_24h_plot_w_supp) <- foreach(i = 21:40) %dopar% {
   paste0(rg[i, "level_labels"], "Reallocations of ", rg[i, "part_labels"], " and ", rg[i, "resp"])
 }
-
 saveRDS(emia_24h_plot_w_supp, paste0(outputdir, "emia_24h_plot_w_supp", ".RDS"))

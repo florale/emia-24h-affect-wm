@@ -40,6 +40,7 @@ library(purrr)
 library(abind)
 library(dutchmasters)
 library(haven)
+library(kableExtra)
 
 expand.grid.df <- function(...) Reduce(function(...) merge.data.frame(..., by = NULL, all = TRUE), list(...))
 
