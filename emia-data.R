@@ -126,3 +126,113 @@ clrs <- complr(ds,
                parts = partsl,
                idvar = "ID",
                total = 1440)
+
+## data for sensitivity analysis --------------------------
+dsen <- read_sav(paste0(dir, "EMiA_actipass_ema_data_4Flora_reduced_v2.sav"))
+dsen <- as.data.table(dsen)
+
+# survey id
+dsen[, dayid := 1:.N, by = ID]
+
+# next day (lead)
+dsen[, c("SleepInterval_lead", "Sedentary_lead", "Standing_lead", "LPA_lead", "MVPA_lead",
+      "valence_lead", "energeticarousal_lead", "calmness_lead", "WAI_2_xs_lead", "Stress_1_xs_lead", "WM_score_lead") :=
+    .SD[.(ID = ID, dayid = dayid + 1),
+        .(SleepInterval, Sedentary, Standing, LPA, MVPA,
+          valence, energeticarousal, calmness, WAI_2_xs, Stress_1_xs, WM_score),
+        on = c("ID", "dayid")]]
+
+# lag
+dsen[, c("SleepInterval_lag", "Sedentary_lag", "Standing_lag", "LPA_lag", "MVPA_lag",
+      "valence_lag", "energeticarousal_lag", "calmness_lag", "WAI_2_xs_lag", "Stress_1_xs_lag", "WM_score_lag") :=
+    .SD[.(ID = ID, dayid = dayid - 1),
+        .(SleepInterval, Sedentary, Standing, LPA, MVPA,
+          valence, energeticarousal, calmness, WAI_2_xs, Stress_1_xs, WM_score),
+        on = c("ID", "dayid")]]
+
+# between vs within
+dsen[, c("BSleepInterval", "WSleepInterval") := meanDeviations(SleepInterval), by = ID]
+dsen[, c("BSedentary", "WSedentary") := meanDeviations(Sedentary), by = ID]
+dsen[, c("BStanding", "WStanding") := meanDeviations(Standing), by = ID]
+dsen[, c("BLPA", "WLPA") := meanDeviations(LPA), by = ID]
+dsen[, c("BMVPA", "WMVPA") := meanDeviations(MVPA), by = ID]
+
+dsen[, c("Bvalence", "Wvalence") := meanDeviations(valence), by = ID]
+dsen[, c("Benergeticarousal", "Wenergeticarousal") := meanDeviations(energeticarousal), by = ID]
+dsen[, c("Bcalmness", "Wcalmness") := meanDeviations(calmness), by = ID]
+dsen[, c("BWAI_2_xs", "WWAI_2_xs") := meanDeviations(WAI_2_xs), by = ID]
+dsen[, c("BStress_1_xs", "WStress_1_xs") := meanDeviations(Stress_1_xs), by = ID]
+dsen[, c("BWM_score", "WWM_score") := meanDeviations(WM_score), by = ID]
+
+dsen[, c("Bvalence_lag", "Wvalence_lag") := meanDeviations(valence_lag), by = ID]
+dsen[, c("Benergeticarousal_lag", "Wenergeticarousal_lag") := meanDeviations(energeticarousal_lag), by = ID]
+dsen[, c("Bcalmness_lag", "Wcalmness_lag") := meanDeviations(calmness_lag), by = ID]
+dsen[, c("BWAI_2_xs_lag", "WWAI_2_xs_lag") := meanDeviations(WAI_2_xs_lag), by = ID]
+dsen[, c("BStress_1_xs_lag", "WStress_1_xs_lag") := meanDeviations(Stress_1_xs_lag), by = ID]
+dsen[, c("BWM_score_lag", "WWM_score_lag") := meanDeviations(WM_score_lag), by = ID]
+
+# clean movement behaviour data
+parts <- c("SleepInterval", "Sedentary", "Standing", "LPA", "MVPA")
+dsen <- dsen[complete.cases(dsen[, .(SleepInterval, Sedentary, Standing, LPA, MVPA)])]
+
+# # check 0s
+# # zPatterns(dsen[, parts, with = FALSE], label = NA)
+# zPatterns(dsen[, parts, with = FALSE], label = 0)
+# 
+# any(apply(dsen[, parts, with = FALSE], 2, function(x) x == 0))
+# dsen[which(SleepInterval == 0), "ID"]
+# dsen[which(Sedentary == 0), "ID"]
+# dsen[which(Standing == 0), "ID"]
+# dsen[which(LPA == 0), "ID"]
+# dsen[which(MVPA == 0), "ID"]
+# 
+# # remove id 62 and 107 as missing all waking variables to impute
+# dsen <- dsen[ID %nin% c(62, 107)]
+# 
+# # impute
+# composition_imp <- lrEM(dsen[, parts, with = FALSE], label = 0, dl = rep(1, 5), ini.cov = "multRepl")
+# dsen <- cbind(dsen[, -parts, with = FALSE], composition_imp)
+
+# check outcomes
+hist(dsen$valence_lead)
+hist(dsen$energeticarousal_lead)
+hist(dsen$calmness_lead)
+hist(dsen$WM_score_lead)
+
+# composition and ilr
+sbp <- matrix(c(
+  1, 1, -1,-1, -1,
+  1, -1, 0, 0, 0,
+  0, 0, 1, -1, -1,
+  0, 0, 0, 1, -1), ncol = 5, byrow = TRUE)
+
+clrsen <- complr(dsen,
+              sbp = sbp,
+              parts = parts,
+              idvar = "ID",
+              total = 1440)
+
+sbp_mvpa <- matrix(c(
+  -1, -1, -1, -1, 1,
+  -1, -1, -1, 1, 0,
+  -1, -1, 1, 0, 0,
+  -1, 1, 0, 0, 0), ncol = 5, byrow = TRUE)
+
+clrsen_mvpa <- complr(dsen,
+                   sbp = sbp_mvpa,
+                   parts = parts,
+                   idvar = "ID",
+                   total = 1440)
+
+
+sbp_sb <- matrix(c(
+  -1, 1, -1, -1, -1,
+  1, 0, -1, -1, -1,
+  0, 0, 1, -1, -1,
+  0, 0, 0, 1, -1), ncol = 5, byrow = TRUE)
+
+clrsen_sb <- complr(dsen,
+                 sbp = sbp_sb,
+                 parts = parts,
+                 idvar = "ID",
+                 total = 1440)

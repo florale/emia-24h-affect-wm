@@ -38,3 +38,5 @@ vignettes/*.pdf
 *.Rproj
 
 .RDataTmp
+
+.DS_Store
