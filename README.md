@@ -4,5 +4,6 @@ by *Flora Le, Viola Mattern, Peter J. Johansson, Pasan Hettiarcachchi, Ulrich Eb
 as published in Scientific Reports (https://doi.org/10.1038/s41598-025-99266-4).
 
 Please see 
-`.R` files for analysis code, and 
-`sleep-affect-supp.html` file for the supplementary results. 
+`.R` files for analysis code, 
+`emia-24h-affect-wm-full.html` file for full results, and 
+`emia-24h-affect-wm-sen.html` file for sensitivity results. 
